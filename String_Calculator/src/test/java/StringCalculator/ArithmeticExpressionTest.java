@@ -3,11 +3,11 @@ package StringCalculator;
 import StringCalulator.ArithmeticExpression;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ArithmeticExpressionTest {
-
 
     @ParameterizedTest
     @ValueSource(strings = {
@@ -16,7 +16,6 @@ class ArithmeticExpressionTest {
             "63 + 5 / 2",
             "1233 + 5 * 3 / 3",
             "53 - 661",
-            "1"
     })
     void 올바른_연산식이면_예외를_발생하지_않는다(String expression) {
         Assertions.assertThatCode(() -> new ArithmeticExpression(expression))
@@ -33,7 +32,8 @@ class ArithmeticExpressionTest {
             "50 - 13 + + 1",
             "5 x 10",
             "50 * * 13 + + 1",
-            "-1"
+            "-1",
+            "1"
     })
     void 올바르지_않은_연산식이면_예외를_발생한다(String expression) {
         Assertions.assertThatThrownBy(() -> new ArithmeticExpression(expression))
@@ -47,6 +47,19 @@ class ArithmeticExpressionTest {
     })
     void 숫자0으로_나누면_예외가_발생한다(String expression) {
         Assertions.assertThatThrownBy(() -> new ArithmeticExpression(expression))
-                .isInstanceOf(ArithmeticException.class);
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "3 + 5 :3",
+            "13 + 5 - 4:5",
+            "63 + 5 / 2:5",
+            "1233 + 5 * 3 / 3:7",
+            "53 - 661:3",
+    }, delimiter = ':')
+    void 연산자_피연산자_담기(String expression, int result) {
+        ArithmeticExpression arithmeticExpression = new ArithmeticExpression(expression);
+        Assertions.assertThat(arithmeticExpression.getStackArray().size()).isEqualTo(result);
     }
 }
