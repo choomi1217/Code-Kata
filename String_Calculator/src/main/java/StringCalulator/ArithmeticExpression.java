@@ -1,10 +1,8 @@
 package StringCalulator;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class ArithmeticExpression {
 
@@ -36,13 +34,13 @@ public class ArithmeticExpression {
     /**
      * 정규식을 그룹화해서 라벨링하여 replace한다.
      */
-    public Queue<String> getStackArray() {
+    public ArrayDeque<String> getStackArray() {
+
         String[] splitExpression = expression
                 .replaceAll(" ", "")
                 .replaceAll("(?<number>\\d)(?<operator>[+\\-*/])", "${number} ${operator} ")
                 .split(" ");
 
-        return Arrays.stream(splitExpression)
-                .collect(Collectors.toCollection(LinkedList::new));
+        return new ArrayDeque<>(Arrays.asList(splitExpression));
     }
 }
