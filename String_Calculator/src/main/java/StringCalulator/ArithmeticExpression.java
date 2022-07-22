@@ -15,7 +15,10 @@ public class ArithmeticExpression {
      * 연산자가 오고 공백이 있거나 없거나
      * 숫자로 끝나는 정규식
      */
-    private static final Pattern expressionRegexPattern = Pattern.compile("^(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+$");
+//    private static final Pattern expressionRegexPattern = Pattern.compile("^(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+$");
+    private static final Pattern expressionRegexPattern = Pattern.compile("^\\s*(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+\\s*$");
+    // ^\s*(:?(?!.+/ ?0.*)\d+ ?[+\-*/] ?)+\d+\s*$
+    // " 8+1 "
 
     public ArithmeticExpression(String expression) {
         validation(expression);
