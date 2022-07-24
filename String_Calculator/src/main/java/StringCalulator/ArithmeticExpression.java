@@ -16,17 +16,13 @@ public class ArithmeticExpression {
      * 숫자로 끝나는 정규식
      */
 //    private static final Pattern expressionRegexPattern = Pattern.compile("^(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+$");
-    private static final Pattern expressionRegexPattern = Pattern.compile("^\\s*(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+\\s*$");
+    private static final Pattern expressionRegexPattern = Pattern.compile("^\\s*(:?(?!.+/ ?0.*)\\d+ *?[+\\-*/] *?)+\\d+\\s*$");
     // ^\s*(:?(?!.+/ ?0.*)\d+ ?[+\-*/] ?)+\d+\s*$
     // " 8+1 "
 
     public ArithmeticExpression(String expression) {
         validation(expression);
         this.expression = expression;
-    }
-
-    public String getExpression() {
-        return this.expression;
     }
 
     private void validation(String expression) {
