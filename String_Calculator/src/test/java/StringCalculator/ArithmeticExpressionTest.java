@@ -19,10 +19,9 @@ class ArithmeticExpressionTest {
             " 8 + 1 ",
             " 9 / 2 *3",
             " 9 /   2   *     3",
-
     })
     void 올바른_연산식이면_예외를_발생하지_않는다(String expression) {
-        Assertions.assertThatCode(() -> new ArithmeticExpression(expression))
+        Assertions.assertThatCode(() -> ArithmeticExpression.of(expression))
                 .doesNotThrowAnyException();
     }
 
@@ -40,7 +39,7 @@ class ArithmeticExpressionTest {
             "1"
     })
     void 올바르지_않은_연산식이면_예외를_발생한다(String expression) {
-        Assertions.assertThatThrownBy(() -> new ArithmeticExpression(expression))
+        Assertions.assertThatThrownBy(() -> ArithmeticExpression.of(expression))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -65,7 +64,7 @@ class ArithmeticExpressionTest {
             " 9 / 2 *3:5"
     }, delimiter = ':')
     void 연산자_피연산자_담기(String expression, int result) {
-        ArithmeticExpression arithmeticExpression = new ArithmeticExpression(expression);
+        ArithmeticExpression arithmeticExpression = ArithmeticExpression.of(expression);
         Assertions.assertThat(arithmeticExpression.getStackArray().size()).isEqualTo(result);
     }
 }

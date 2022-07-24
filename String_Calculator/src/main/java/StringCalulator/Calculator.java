@@ -22,4 +22,5 @@ public class Calculator {
         }
         return Double.parseDouble(accumulate.poll());
     }
+
 }
