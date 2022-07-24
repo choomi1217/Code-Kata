@@ -10,6 +10,7 @@ public class Calculator {
         this.accumulate = accumulate;
     }
 
+    @SuppressWarnings("all") // there will never be a problem
     public double calculation() {
 
         while (accumulate.size() != 1) {
@@ -19,6 +20,6 @@ public class Calculator {
             double res = Operator.findBy(center).apply(left, right);
             accumulate.addFirst(String.valueOf(res));
         }
-        return 0;
+        return Double.parseDouble(accumulate.poll());
     }
 }
