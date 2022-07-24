@@ -16,7 +16,7 @@ class CalculatorTest {
             "1233 + 5 * 3 / 3:1238",
             "53 - 661:-608",
             " 8 + 1 :9",
-            " 9 / 2 *3 :13.5"
+            " 9 / 2 *3 :13.5",
     }, delimiter = ':')
     void 계산_테스트(String args, double result) {
         ArithmeticExpression arithmeticExpression = new ArithmeticExpression(args);
