@@ -12,10 +12,12 @@ public class Calculator {
 
     public double calculation() {
 
-        int count = 0;
-        double sum = 0;
-        while (!accumulate.isEmpty()) {
-
+        while (accumulate.size() != 1) {
+            double left = Double.parseDouble(accumulate.poll());
+            char center = accumulate.poll().charAt(0);
+            double right = Double.parseDouble(accumulate.poll());
+            double res = Operator.findBy(center).apply(left, right);
+            accumulate.addFirst(String.valueOf(res));
         }
         return 0;
     }
