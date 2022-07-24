@@ -17,7 +17,9 @@ class ArithmeticExpressionTest {
             "1233 + 5 * 3 / 3",
             "53 - 661",
             " 8 + 1 ",
-            " 9 / 2 *3"
+            " 9 / 2 *3",
+            " 9 /   2   *     3",
+
     })
     void 올바른_연산식이면_예외를_발생하지_않는다(String expression) {
         Assertions.assertThatCode(() -> new ArithmeticExpression(expression))
