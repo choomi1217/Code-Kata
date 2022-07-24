@@ -14,6 +14,7 @@ public class Calculator {
 
         int count = 0;
         double sum = 0;
+
         while (!accumulate.isEmpty()) {
 
         }
