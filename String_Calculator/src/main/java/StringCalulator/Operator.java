@@ -1,5 +1,6 @@
 package StringCalulator;
 
+import java.util.Arrays;
 import java.util.function.BinaryOperator;
 
 public enum Operator {
@@ -19,21 +20,14 @@ public enum Operator {
     }
 
     public static Operator findBy(char operand) {
-        switch (operand) {
-            case '+':
-                return PLUS;
-            case '-':
-                return MINUS;
-            case '*':
-                return MULTIPLE;
-            case '/':
-                return DEVIDE;
-            default:
-                throw new IllegalArgumentException(" 예상된 값이 아닙니다");
-        }
+        return Arrays.stream(Operator.values())
+                .filter(o -> o.operand == operand)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 연산자입니다."));
     }
 
-    public double apply(double i, double i1) {
-        return binaryOperator.apply(i, i1);
+    public double apply(double left, double right) {
+        if (this.operand == '/' && right == 0) throw new IllegalArgumentException(" 0으로 나눌 수 없습니다. ");
+        return binaryOperator.apply(left, right);
     }
 }
