@@ -2,18 +2,14 @@ package StringCalulator.in;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class CalculatorInput {
-    private final BufferedReader br;
-    private final String userInput;
 
-    public CalculatorInput(BufferedReader br) throws IOException {
-        this.br = br;
-        this.userInput = br.readLine();
-        br.close();
-    }
-
-    public String getUserInput(){
-        return userInput;
+    public static String userInput() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String readLine = bufferedReader.readLine();
+        bufferedReader.close();
+        return readLine;
     }
 }

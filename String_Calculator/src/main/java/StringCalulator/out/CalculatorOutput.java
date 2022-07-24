@@ -2,18 +2,15 @@ package StringCalulator.out;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class CalculatorOutput {
-    private final BufferedWriter bw;
 
-    public CalculatorOutput(BufferedWriter bw) {
-        this.bw = bw;
-
-    }
-
-    public void print(double result) throws IOException {
-        bw.write(String.valueOf(result));
-        bw.close();
+    public static void print(String result) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.close();
+//        return new CalculatorOutput(bufferedWriter);
     }
 
 }
