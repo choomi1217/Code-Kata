@@ -49,7 +49,7 @@ class ArithmeticExpressionTest {
             "4 / 0"
     })
     void 숫자0으로_나누면_예외가_발생한다(String expression) {
-        Assertions.assertThatThrownBy(() -> new ArithmeticExpression(expression))
+        Assertions.assertThatThrownBy(() -> ArithmeticExpression.of(expression))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

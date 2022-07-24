@@ -6,8 +6,12 @@ public class Calculator {
 
     private final ArrayDeque<String> accumulate;
 
-    public Calculator(ArrayDeque<String> accumulate) {
+    private Calculator(ArrayDeque<String> accumulate) {
         this.accumulate = accumulate;
+    }
+
+    public static Calculator of(ArithmeticExpression arithmeticExpression){
+        return new Calculator(arithmeticExpression.getStackArray());
     }
 
     @SuppressWarnings("all") // there will never be a problem
