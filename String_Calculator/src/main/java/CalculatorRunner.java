@@ -3,15 +3,16 @@ import StringCalulator.Calculator;
 import StringCalulator.in.CalculatorInput;
 import StringCalulator.out.CalculatorOutput;
 
-import java.io.*;
+import java.io.IOException;
 
+/*
+ * 정적팩토리메소드
+ * 팩토리패턴을 사용해서 객체 생성부분 만들고, 그 부분 적용하기
+ * */
 public class CalculatorRunner {
-    public static void run() throws IOException {
-        CalculatorInput input = new CalculatorInput(new BufferedReader(new InputStreamReader(System.in)));
-        ArithmeticExpression arithmeticExpression = new ArithmeticExpression(input.getUserInput());
-        Calculator calculator = new Calculator(arithmeticExpression.getStackArray());
-
-        CalculatorOutput output = new CalculatorOutput(new BufferedWriter(new OutputStreamWriter(System.out)));
-        output.print(calculator.calculation());
+    static void run() throws IOException {
+        ArithmeticExpression arithmeticExpression = ArithmeticExpression.of(CalculatorInput.userInput());
+        Calculator calculator = Calculator.of(arithmeticExpression);
+        CalculatorOutput.print(String.valueOf(calculator.calculation()));
     }
 }
