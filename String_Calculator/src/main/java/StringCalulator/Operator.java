@@ -4,10 +4,11 @@ import java.util.function.BinaryOperator;
 
 public enum Operator {
 
-    PLUS('+', Double::sum),
+    PLUS('+', (left, right) -> left + right),
     MINUS('-', (left, right) -> left - right),
     MULTIPLE('*', (left, right) -> left * right),
-    DEVIDE('/', (left, right) -> left / right);
+    DIVIDE('/', (left, right) -> left / right),
+    ;
 
     private final char operand;
     private final BinaryOperator<Double> binaryOperator;
