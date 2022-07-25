@@ -16,17 +16,17 @@ public class ArithmeticExpression {
      * 숫자로 끝나는 정규식
      */
 //    private static final Pattern expressionRegexPattern = Pattern.compile("^(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+$");
-    private static final Pattern expressionRegexPattern = Pattern.compile("^\\s*(:?(?!.+/ ?0.*)\\d+ ?[+\\-*/] ?)+\\d+\\s*$");
     // ^\s*(:?(?!.+/ ?0.*)\d+ ?[+\-*/] ?)+\d+\s*$
     // " 8+1 "
+    private static final Pattern expressionRegexPattern = Pattern.compile("^\\s*(:?(?!.+/ ?0.*)\\d+ *?[+\\-*/] *?)+\\d+\\s*$");
 
-    public ArithmeticExpression(String expression) {
+    private ArithmeticExpression(String expression) {
         validation(expression);
         this.expression = expression;
     }
 
-    public String getExpression() {
-        return this.expression;
+    public static ArithmeticExpression of(String expression) {
+        return new ArithmeticExpression(expression);
     }
 
     private void validation(String expression) {
@@ -38,7 +38,6 @@ public class ArithmeticExpression {
      * 정규식을 그룹화해서 라벨링하여 replace한다.
      */
     public ArrayDeque<String> getStackArray() {
-
         String[] splitExpression = expression
                 .replaceAll(" ", "")
                 .replaceAll("(?<number>\\d)(?<operator>[+\\-*/])", "${number} ${operator} ")
