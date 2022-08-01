@@ -1,5 +1,7 @@
 package io.github.wjwan0.baseball;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,6 +30,17 @@ public class NumberTest {
     @Test
     void 랜덤숫자_만들기_테스트() {
         Numbers randomNumbers = Numbers.randomNumbers();
+        System.out.println(randomNumbers.threeNumbers());
         Assertions.assertThat(randomNumbers.threeNumbers()).hasSize(3);
+    }
+
+    @Test
+    void 스트라이크와_볼_판별_테스트(){
+        String user = "123"; String computer = "345"; // 0strike 1ball
+        //String user = "123" String computer = "124" // 2strike 0ball
+        //String user = "123" String computer = "132" // 1strike 2ball
+
+        Arrays.stream(user.split("")).fo
+
     }
 }
