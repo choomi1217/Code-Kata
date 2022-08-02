@@ -18,6 +18,6 @@ final class RandomNumbers implements Numbers {
 
     @Override
     public String threeNumbers() {
-        return this.value;
+        return value;
     }
 }
