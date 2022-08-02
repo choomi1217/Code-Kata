@@ -5,10 +5,10 @@ final class UserNumbers implements Numbers {
 
     UserNumbers(String numbers) {
         if (numbers == null || numbers.isBlank() || numbers.contains(" ")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("*공백은* 입력할 수 없습니다.");
         }
         if (numbers.chars().distinct().count() != 3) {
-            throw new IllegalArgumentException("must be non-duplicated three numbers");
+            throw new IllegalArgumentException("*중복되지않는* 3개의 숫자만 입력 가능합니다.");
         }
 
         this.value = numbers;
