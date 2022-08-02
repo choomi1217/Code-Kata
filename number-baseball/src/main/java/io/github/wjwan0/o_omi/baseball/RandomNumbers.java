@@ -1,4 +1,4 @@
-package io.github.wjwan0.baseball;
+package io.github.wjwan0.o_omi.baseball;
 
 import java.util.Random;
 
@@ -18,6 +18,6 @@ final class RandomNumbers implements Numbers {
 
     @Override
     public String threeNumbers() {
-        return this.value;
+        return value;
     }
 }

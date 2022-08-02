@@ -1,9 +1,9 @@
-package io.github.wjwan0.baseball;
+package io.github.wjwan0.o_omi.baseball;
 
 public interface Numbers {
     /**
      * 어떻게 구현해라
-     *
+     * 팩토리(?)
      * @return
      */
     String threeNumbers();
