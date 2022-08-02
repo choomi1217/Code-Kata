@@ -1,7 +1,7 @@
-package io.github.wjwan0.baseball;
+package io.github.wjwan0.o_omi.baseball;
 
-import io.github.wjwan0.baseball.in.UserInputNumbers;
-import io.github.wjwan0.baseball.out.ResultOutput;
+import io.github.wjwan0.o_omi.baseball.in.UserInputNumbers;
+import io.github.wjwan0.o_omi.baseball.out.ResultOutput;
 
 public class GameConsole {
     //메인말구! 메서드만들고! main에서 따로실행!

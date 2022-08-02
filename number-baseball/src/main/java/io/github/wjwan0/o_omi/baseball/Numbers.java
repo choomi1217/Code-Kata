@@ -1,4 +1,4 @@
-package io.github.wjwan0.baseball;
+package io.github.wjwan0.o_omi.baseball;
 
 public interface Numbers {
     /**

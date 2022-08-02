@@ -1,6 +1,6 @@
-package io.github.wjwan0.baseball.out;
+package io.github.wjwan0.o_omi.baseball.out;
 
-import io.github.wjwan0.baseball.Judgement;
+import io.github.wjwan0.o_omi.baseball.Judgement;
 
 public class ResultOutput {
 

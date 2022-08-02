@@ -1,6 +1,6 @@
-package io.github.wjwan0.baseball.in;
+package io.github.wjwan0.o_omi.baseball.in;
 
-import io.github.wjwan0.baseball.Numbers;
+import io.github.wjwan0.o_omi.baseball.Numbers;
 
 import java.util.Scanner;
 
