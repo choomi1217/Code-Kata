@@ -13,7 +13,7 @@ public class NumberTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    @ValueSource(strings = {"12", "1234", "12 "})
+    @ValueSource(strings = {"12", "1234", "12 ", "-12"})
     void mustBe3Numbers(String testcase) {
         assertThatThrownBy(() -> Numbers.specificNumbers(testcase))
                 .isInstanceOf(IllegalArgumentException.class);

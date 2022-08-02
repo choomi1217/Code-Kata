@@ -3,7 +3,7 @@ package io.github.wjwan0.baseball;
 public interface Numbers {
     /**
      * 어떻게 구현해라
-     *
+     * 팩토리(?)
      * @return
      */
     String threeNumbers();
