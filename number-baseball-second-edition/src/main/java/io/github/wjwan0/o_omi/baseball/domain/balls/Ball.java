@@ -1,4 +1,4 @@
-package io.github.wjwan0.o_omi.baseball;
+package io.github.wjwan0.o_omi.baseball.domain.balls;
 
 public record Ball(int number) {
     // 생성자, Getter, Hashcode, equals(?)

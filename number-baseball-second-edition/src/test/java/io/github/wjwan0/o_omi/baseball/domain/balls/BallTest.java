@@ -1,4 +1,4 @@
-package io.github.wjwan0.o_omi.baseball;
+package io.github.wjwan0.o_omi.baseball.domain.balls;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

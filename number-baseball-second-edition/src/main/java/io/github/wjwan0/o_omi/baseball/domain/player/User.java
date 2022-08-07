@@ -1,4 +1,7 @@
-package io.github.wjwan0.o_omi.baseball;
+package io.github.wjwan0.o_omi.baseball.domain.player;
+
+import io.github.wjwan0.o_omi.baseball.domain.balls.Ball;
+import io.github.wjwan0.o_omi.baseball.domain.balls.Balls;
 
 import java.util.Arrays;
 import java.util.List;
