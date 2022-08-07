@@ -4,8 +4,6 @@ import io.github.wjwan0.o_omi.baseball.in.UserInputNumbers;
 import io.github.wjwan0.o_omi.baseball.out.ResultOutput;
 
 public class GameConsole {
-    //메인말구! 메서드만들고! main에서 따로실행!
-    //여기다가 Judgement, Random, User, Input, Output
     public static void main(String[] args) {
         Runner.init();
     }
@@ -17,7 +15,7 @@ public class GameConsole {
         }
 
         public void run() {
-            int strikeCount = 0;
+            int strikeCount;
             Numbers randomNumbers = Numbers.randomNumbers();
             ResultOutput output;
             UserInputNumbers userInputNumbers;
@@ -25,14 +23,13 @@ public class GameConsole {
                 userInputNumbers = new UserInputNumbers();
                 Numbers userNumbers = userInputNumbers.getNumbers();
                 Judgement judgement = new Judgement(randomNumbers, userNumbers);
-                System.out.println("randomNumbers = " + randomNumbers.threeNumbers());
                 strikeCount = judgement.getStrikeCount();
                 output = new ResultOutput(judgement);
                 output.printResult();
             } while (strikeCount != 3);
 
             output.printRestart();
-            if (userInputNumbers.inputRestart() == 1) {
+            if (userInputNumbers.inputRestart()) {
                 System.out.println("게임을 다시 시작합니다.");
                 run();
             }

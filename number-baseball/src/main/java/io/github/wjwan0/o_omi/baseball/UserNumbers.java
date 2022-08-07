@@ -8,7 +8,7 @@ final class UserNumbers implements Numbers {
             throw new IllegalArgumentException("*공백은* 입력할 수 없습니다.");
         }
         if (numbers.chars().distinct().count() != 3) {
-            throw new IllegalArgumentException("*중복되지않는* 3개의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("*중복 되지 않는* 3개의 숫자만 입력 가능 합니다.");
         }
         if (!numbers.matches("\\d{3}")) {
             throw new IllegalArgumentException("*숫자만* 입력할 수 있습니다.");

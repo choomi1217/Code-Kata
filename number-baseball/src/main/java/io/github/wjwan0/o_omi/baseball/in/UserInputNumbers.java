@@ -23,10 +23,16 @@ public class UserInputNumbers {
         return numbers;
     }
 
-    public int inputRestart() {
+    public boolean inputRestart() {
         int result = scanner.nextInt();
         scanner.nextLine();
 
-        return result;
+        if (result == 1) {
+            return true;
+        }
+        if (result == 2) {
+            return false;
+        }
+        throw new IllegalArgumentException("정확한 값이 입력되지 않았습니다.");
     }
 }
