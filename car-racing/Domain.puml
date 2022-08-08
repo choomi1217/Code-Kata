@@ -1,0 +1,32 @@
+@startuml
+
+class Car {
+    name: String
+    forwardState: int
+    makeRandomState: MakeRandomState
+    __
+    getName(): String
+    getForwardState(): int
+}
+
+class Cars {
+    Car: ArrayList<>
+    __
+    Cars(String[] carsName): Constructor
+}
+
+class MakeRandomState {
+    goStop: boolean
+    __
+    MakeRandomState(): Constructor
+    getGoStop(): boolean
+}
+
+'+ output input console
+
+'String
+
+Cars <-- Car
+Car <-- MakeRandomState
+
+@enduml
