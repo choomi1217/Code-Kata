@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 public class UserTest {
 
-
     @Test
     void 중복_값을_제거_후_3개면_예외를_발생하지_않는다() {
         Assertions.assertThatCode(() -> Player.user("123"))

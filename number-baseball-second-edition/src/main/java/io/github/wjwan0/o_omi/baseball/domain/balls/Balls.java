@@ -18,10 +18,6 @@ public class Balls {
         // todo 빈배열 처리
     }
 
-    private void addBall(Ball ball) {
-        this.balls.add(ball);
-    }
-
     public List<Ball> getBalls() {
         return new ArrayList<>(this.balls);
     }
