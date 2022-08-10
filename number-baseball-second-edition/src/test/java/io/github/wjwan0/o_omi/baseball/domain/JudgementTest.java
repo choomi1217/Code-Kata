@@ -15,22 +15,22 @@ public class JudgementTest {
 
     @BeforeEach
     void newPlayer() {
-        computerUser = Player.user(new int[]{1, 2, 3});
+        computerUser = Player.user("123");
     }
 
     @ParameterizedTest
     @MethodSource("scoreTest")
     void 점수_체크_테스트(Player humanUser, Score score) {
-        Assertions.assertThat(new Judgement(computerUser, humanUser).getScore()).isEqualTo(score.toString());
+        Assertions.assertThat(new Judgement(computerUser, humanUser).getScore()).isEqualTo(score);
     }
 
 
     static Stream<Arguments> scoreTest() {
         return Stream.of(
-                Arguments.of(Player.user(new int[]{1, 2, 3}), new Score(3, 0)),
-                Arguments.of(Player.user(new int[]{1, 3, 2}), new Score(1, 2)),
-                Arguments.of(Player.user(new int[]{3, 1, 2}), new Score(0, 3)),
-                Arguments.of(Player.user(new int[]{4, 5, 6}), new Score(0, 0))
+                Arguments.of(Player.user("123"), new Score(3, 0)),
+                Arguments.of(Player.user("132"), new Score(1, 2)),
+                Arguments.of(Player.user("312"), new Score(0, 3)),
+                Arguments.of(Player.user("456"), new Score(0, 0))
         );
     }
 }

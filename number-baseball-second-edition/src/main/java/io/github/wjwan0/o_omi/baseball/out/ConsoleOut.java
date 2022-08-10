@@ -1,8 +1,10 @@
 package io.github.wjwan0.o_omi.baseball.out;
 
+import io.github.wjwan0.o_omi.baseball.domain.Score;
+
 public class ConsoleOut {
 
-    public void output(String score){
+    public void output(Score score){
         System.out.println(score);
     }
 
