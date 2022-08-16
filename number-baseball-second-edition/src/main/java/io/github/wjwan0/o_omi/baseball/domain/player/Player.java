@@ -12,7 +12,7 @@ public interface Player {
         return new Computer();
     }
 
-    static Player user(int[] ballsArray) {
+    static Player user(String ballsArray) {
         return new User(ballsArray);
     }
 }

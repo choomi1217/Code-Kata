@@ -42,8 +42,8 @@ public class Judgement {
         return strikeCount;
     }
 
-    public String getScore() {
-        return score.toString();
+    public Score getScore() {
+        return score;
     }
 
     public boolean gameCheck() {

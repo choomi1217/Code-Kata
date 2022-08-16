@@ -3,19 +3,28 @@ package io.github.wjwan0.o_omi.baseball.domain.player;
 import io.github.wjwan0.o_omi.baseball.domain.balls.Ball;
 import io.github.wjwan0.o_omi.baseball.domain.balls.Balls;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.random.RandomGenerator;
 
-final class Computer implements Player{
+final class Computer implements Player {
 
     private final Balls balls;
 
     Computer() {
-        balls = Balls.of(RandomGenerator.getDefault()
-                .ints(0, 10)
+        List<Integer> integers = new java.util.ArrayList<>(RandomGenerator.getDefault()
+                .ints(1, 10)
                 .distinct()
                 .limit(3)
-                .toArray());
+                .boxed()
+                .toList());
+
+        Collections.shuffle(integers);
+        int[] array = integers.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+
+        balls = Balls.of(array);
     }
 
     @Override

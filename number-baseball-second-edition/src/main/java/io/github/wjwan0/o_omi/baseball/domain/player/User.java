@@ -10,15 +10,41 @@ final class User implements Player {
 
     private final Balls balls;
 
-    User(int[] ints) {
-        int[] distinctedIntsList = Arrays.stream(ints)
-                .distinct()
-                .toArray();
-        //중복 제거 전 3개 이상은 입력받는곳에서 처리.
-        if (distinctedIntsList.length != 3) {
-            throw new IllegalArgumentException("공은 중복되지 않은 3개만 던질 수 있습니다.");
+    User(String inputs) {
+        int[] userInputArray = validation(inputs);
+        balls = Balls.of(userInputArray);
+    }
+
+    private int[] validation(String inputs) {
+
+        int[] userInputArray = userInputArray(inputs);
+
+        if (!inputs.matches("\\d{3}")) {
+            throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }
-        balls = Balls.of(ints);
+
+        if (userInputArray.length != 3) {
+            throw new IllegalArgumentException("공은 3개만 입력할 수 있습니다.");
+        }
+
+        if (distinctCount(userInputArray) != 3) {
+            throw new IllegalArgumentException("공은 중복 되지 않은 3개만 던질 수 있습니다.");
+        }
+
+        return userInputArray;
+
+    }
+
+    private static int[] userInputArray(String userInput) throws NumberFormatException {
+        return Arrays.stream(userInput.split(""))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+    }
+
+    private static long distinctCount(int[] userInput) {
+        return Arrays.stream(userInput)
+                .distinct()
+                .count();
     }
 
     @Override

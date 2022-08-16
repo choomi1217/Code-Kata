@@ -1,5 +1,7 @@
 package io.github.wjwan0.o_omi.baseball.domain;
 
+import java.util.Objects;
+
 public class Score {
     private final int strikeCount;
     private final int ballCount;
@@ -27,5 +29,18 @@ public class Score {
         }
 
         return "%s 스트라이크 %s 볼".formatted(strikeCount, ballCount);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Score score = (Score) o;
+        return strikeCount == score.strikeCount && ballCount == score.ballCount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(strikeCount, ballCount);
     }
 }

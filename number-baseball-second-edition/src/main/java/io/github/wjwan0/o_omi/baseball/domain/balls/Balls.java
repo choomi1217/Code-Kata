@@ -8,18 +8,14 @@ public class Balls {
     private final List<Ball> balls;
 
     private Balls(int[] ballArray) {
-        balls = new ArrayList<>();
-        Arrays.stream(ballArray)
+        balls = Arrays.stream(ballArray)
                 .mapToObj(Ball::new)
-                .forEach(this::addBall);
+                .toList();
     }
 
-    static public Balls of(int[] inputBalls) {
+    public static Balls of(int[] inputBalls) {
         return new Balls(inputBalls);
-    }
-
-    private void addBall(Ball ball) {
-        this.balls.add(ball);
+        // todo 빈배열 처리
     }
 
     public List<Ball> getBalls() {

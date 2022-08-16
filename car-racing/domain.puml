@@ -1,0 +1,42 @@
+@startuml
+
+class Car {
+    name: String
+    forwardState: int
+    makeRandomState: MakeRandomState
+    __
+    getName(): String
+    getForwardState(): int
+}
+
+class Cars {
+    Car: ArrayList<>
+    __
+    Cars(String[] carsName): Constructor
+}
+
+class MakeRandom {
+    randomValue: int
+    __
+    MakeRandomState(): Constructor
+}
+
+class Move {
+    move: boolean
+    __
+    Move(MakeRandomState makeRandomState): Constructor
+    makeMove(): boolean
+}
+
+'+ output input console
+
+'String
+
+Cars <-- Car
+Car <-- Move
+Move <-- MakeRandom
+
+
+@enduml
+
+1. MakeRandom을 싱글톤으로 만들고 랜덤 숫자 만드는 메서드를 public으로 열어서 Move에서 사용한다.

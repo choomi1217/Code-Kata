@@ -1,7 +1,7 @@
 package io.github.wjwan0.o_omi.baseball.domain.balls;
 
 public record Ball(int number) {
-    // 생성자, Getter, Hashcode, equals(?)
+    // 생성자, Getter, Hashcode, equals
 
     public Ball {
         ballValidationCheck(number);
