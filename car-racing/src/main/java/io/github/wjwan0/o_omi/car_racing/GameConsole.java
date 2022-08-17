@@ -26,14 +26,4 @@ public class GameConsole {
 
         out.resultOut(cars.getWinnerCarList());
     }
-
-    private void makeWinnerOutput(List<Car> winnerList, StringBuilder result, int last) {
-        if (last != winnerList.size() - 1) {
-            result.append(winnerList.get(last).getCarName()).append(", ");
-            return;
-        }
-        result.append(winnerList.get(last).getCarName()).append("가 최종우승 했습니다.");
-    }
-
-
 }
