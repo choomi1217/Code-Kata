@@ -3,8 +3,6 @@ package io.github.wjwan0.o_omi.car_racing;
 import io.github.wjwan0.o_omi.car_racing.in.ConsoleIn;
 import io.github.wjwan0.o_omi.car_racing.out.ConsoleOut;
 
-import java.util.List;
-
 public class GameConsole {
 
     private final ConsoleIn in = new ConsoleIn();
@@ -23,19 +21,10 @@ public class GameConsole {
             out.carsState(cars);
         }
 
-        List<Car> sortCarList = cars.sort();
-        Car winner = sortCarList.get(0);
-        List<Car> winnerList = sortCarList.stream()
-                .filter(car -> winner.getForwardState().length() == car.getForwardState().length())
-                .toList();
+        System.out.println("결과 출력");
+        out.carsState(cars);
 
-
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < winnerList.size(); i++) {
-            makeWinnerOutput(winnerList, result, i);
-        }
-
-        System.out.println(result);
+        out.resultOut(cars.getWinnerCarList());
     }
 
     private void makeWinnerOutput(List<Car> winnerList, StringBuilder result, int last) {
