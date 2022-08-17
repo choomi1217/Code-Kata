@@ -10,7 +10,13 @@ public class ConsoleIn {
 
     public Cars makeCars() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)");
-        return new Cars(scanner.nextLine());
+
+        try {
+            return new Cars(scanner.nextLine());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return makeCars();
+        }
     }
 
     public int askingGameCount() {
