@@ -10,10 +10,14 @@ public class Cars {
     private final List<Car> carList;
 
     public Cars(String inputs) {
-        String[] names = inputs.split(",");
+        List<String> collect = Arrays.stream(inputs.split(","))
+                .map(String::trim)
+                .toList();
+        String[] names = collect.toArray(new String[0]);
+//        String[] names = inputs.split(",");
 
         this.carList = Arrays.stream(names)
-                .map(s -> new Car(s, new MoveImpl()))
+                .map(name -> new Car(name, new MoveImpl()))
                 .collect(Collectors.toList());
     }
 
@@ -25,10 +29,14 @@ public class Cars {
         carList.forEach(Car::moveForwardCheck);
     }
 
-    public List<Car> sort() {
+    public List<Car> getWinnerCarList() {
         ArrayList<Car> cars = new ArrayList<>(carList);
         cars.sort(Car::compareTo);
-        return cars;
+
+        Car winner = cars.get(0);
+        return cars.stream()
+                .filter(car -> winner.getForwardState().length() == car.getForwardState().length())
+                .toList();
     }
 
 }
