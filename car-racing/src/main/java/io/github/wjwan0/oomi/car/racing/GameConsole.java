@@ -10,7 +10,10 @@ public class GameConsole {
 
     public void init() {
 
-        Cars cars = in.makeCars();
+        String makeCars = in.makeCars();
+
+
+        Cars cars = tryMakeCars(makeCars);
 
         int gameCount = in.askingGameCount();
         in.closeScanner();
@@ -25,5 +28,16 @@ public class GameConsole {
         out.carsState(cars);
 
         out.resultOut(cars.getWinnerCarList());
+
+    }
+
+    private Cars tryMakeCars(String makeCars) {
+        try {
+            return Cars.from(makeCars);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            init();
+            return null;
+        }
     }
 }
