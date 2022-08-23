@@ -34,14 +34,21 @@ public class Cars {
 
     public List<Car> getWinnerCarList() {
         ArrayList<Car> cars = new ArrayList<>(carList);
-        Comparator<Car> carComparator = Comparator.comparingInt(Car::getForwardState);
         Car winnerCar = cars.stream()
-                .max(carComparator)
+                .max(Comparator.comparingInt(Car::getForwardState))
                 .orElseThrow();
 
 
         return cars.stream()
                 .filter(car -> winnerCar.getForwardState() == car.getForwardState())
+                .toList();
+    }
+
+    public List<Car> getPlyaerRanking() {
+        ArrayList<Car> cars = new ArrayList<>(carList);
+
+        return cars.stream()
+                .sorted(Comparator.comparingInt(Car::getForwardState).reversed())
                 .toList();
     }
 
