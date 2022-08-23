@@ -11,7 +11,11 @@ public class ConsoleOut {
 
     public void carsState(Cars cars) {
         cars.getCarList()
-                .forEach(System.out::println);
+                .forEach(car -> {
+                    String name = car.getCarName();
+                    String repeat = "-".repeat(Math.max(0, car.getForwardState()));
+                    System.out.printf("%s : %s \n", name, repeat);
+                });
         System.out.println();
     }
 
@@ -28,6 +32,27 @@ public class ConsoleOut {
 
         System.out.println(result);
     }
+
+    public void rankingOut(Cars cars) {
+        ArrayDeque<Car> carArrayDeque = new ArrayDeque<>(cars.getPlyaerRanking());
+
+        Car car = null;
+        int count = 0;
+
+        while (!carArrayDeque.isEmpty()) {
+            count++;
+            if (count == 1) {
+                car = carArrayDeque.poll();
+            } else {
+                if (car.getForwardState() == Objects.requireNonNull(carArrayDeque.poll()).getForwardState()) {
+
+                }
+
+            }
+
+        }
+    }
+
 
     public void printStart() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)");
