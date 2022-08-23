@@ -3,9 +3,7 @@ package io.github.wjwan0.oomi.car.racing.out;
 import io.github.wjwan0.oomi.car.racing.Car;
 import io.github.wjwan0.oomi.car.racing.Cars;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static java.util.stream.Collectors.toCollection;
 
