@@ -13,31 +13,30 @@ public class GameConsole {
         String makeCars = in.makeCars();
 
 
-        Cars cars = tryMakeCars(makeCars);
-
-        int gameCount = in.askingGameCount();
-        in.closeScanner();
-
-        System.out.println("실행 결과");
-        for (int i = 0; i < gameCount; i++) {
-            cars.run();
-            out.carsState(cars);
-        }
-
-        System.out.println("결과 출력");
-        out.carsState(cars);
-
-        out.resultOut(cars.getWinnerCarList());
-
-    }
-
-    private Cars tryMakeCars(String makeCars) {
         try {
-            return Cars.from(makeCars);
+            Cars cars = Cars.from(makeCars);
+
+            int gameCount = in.askingGameCount();
+
+            System.out.println("실행 결과");
+            playGame(cars, gameCount);
+            System.out.println("결과 출력");
+            out.carsState(cars);
+            out.resultOut(cars.getWinnerCarList());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             init();
-            return null;
+        } finally {
+            in.closeScanner();
+        }
+
+
+    }
+
+    private void playGame(Cars cars, int gameCount) {
+        for (int i = 0; i < gameCount; i++) {
+            cars.run();
+            out.carsState(cars);
         }
     }
 }
