@@ -15,6 +15,7 @@ public class MoveImpl implements Move {
         }
     }
 
+    //todo car 객체로 이동 토실토실 아기 거니
     public boolean isItMove() {
         makeRandom.makeRandomState();
         return makeRandom.getRandomeValue() >= 4;

@@ -1,9 +1,6 @@
 package io.github.wjwan0.oomi.car.racing;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import static java.util.stream.Collectors.toList;
 
@@ -33,23 +30,41 @@ public class Cars {
     }
 
     public List<Car> getWinnerCarList() {
-        ArrayList<Car> cars = new ArrayList<>(carList);
-        Car winnerCar = cars.stream()
+        Car winnerCar = carList.stream()
                 .max(Comparator.comparingInt(Car::getForwardState))
                 .orElseThrow();
 
 
-        return cars.stream()
+        return carList.stream()
                 .filter(car -> winnerCar.getForwardState() == car.getForwardState())
                 .toList();
     }
 
     public List<Car> getPlyaerRanking() {
-        ArrayList<Car> cars = new ArrayList<>(carList);
+        List<Car> arr = List.of(
+                new Car("거니" ,8),
+                new Car("망주" ,7),
+                new Car("앵미" ,6)
+        );
+//                carList.stream()
+//                .sorted(Comparator.comparingInt(Car::getForwardState).reversed())
+//                .toList();
 
-        return cars.stream()
-                .sorted(Comparator.comparingInt(Car::getForwardState).reversed())
-                .toList();
+        int rank = 2;
+        Map<Integer, List<Car>> map = new HashMap<>();
+        map.put(1, new ArrayList(List.of(arr.get(0))));
+        for (int i = 1; i < arr.size(); i++) {
+            Car target = arr.get(i);
+            if(target.getForwardState() == arr.get(i - 1).getForwardState()) {
+                map.get(map.size()).add(target);
+            } else {
+                map.put(rank, new ArrayList(List.of(target)));
+            }
+            rank++;
+        }
+        System.out.println("map = " + map);
+
+        return null;
     }
 
 }
