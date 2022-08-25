@@ -7,6 +7,12 @@ public class Car {
 
     private final Move move;
 
+    public Car(String name, int forwardState) {
+        this.name = name;
+        this.forwardState = forwardState;
+        this.move = new MoveImpl();
+    }
+
     public Car(String name, Move move) {
         validation(name);
         this.move = move;

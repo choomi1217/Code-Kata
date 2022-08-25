@@ -67,4 +67,17 @@ public class Cars {
         return null;
     }
 
+    public static void main(String[] args) {
+        Cars cars = Cars.from("망주,거니,앵미");
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.run();
+        cars.getPlyaerRanking();
+    }
 }
