@@ -34,7 +34,6 @@ public class Cars {
                 .max(Comparator.comparingInt(Car::getForwardState))
                 .orElseThrow();
 
-
         return carList.stream()
                 .filter(car -> winnerCar.getForwardState() == car.getForwardState())
                 .toList();
