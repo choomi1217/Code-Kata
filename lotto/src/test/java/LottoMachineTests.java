@@ -1,3 +1,5 @@
+import domain.Lotto;
+import domain.LottoMachine;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
