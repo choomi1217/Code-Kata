@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private final List<LottoNumber> lotto;
+    private final List<LottoNumber> numbers;
 
     private Lotto(List<LottoNumber> lotto) {
         validation(lotto);
-        this.lotto = new ArrayList<>(lotto);
+        this.numbers = new ArrayList<>(lotto);
     }
 
     public static Lotto from(List<LottoNumber> from) {
@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     public List<LottoNumber> getNumbers() {
-        return new ArrayList<>(lotto);
+        return new ArrayList<>(numbers);
     }
 
     private void validation(List<LottoNumber> lottoNumber) {
