@@ -1,3 +1,5 @@
+package domain;
+
 import domain.Lotto;
 import domain.LottoCommittee;
 import domain.LottoNumber;
