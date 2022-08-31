@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.EnumMap;
 import java.util.stream.Stream;
 
 public enum Rank {
@@ -7,7 +8,8 @@ public enum Rank {
     SECOND(30_000_000),
     THIRD(1_500_000),
     FOURTH(50_000),
-    FIFTH(5_000);
+    FIFTH(5_000),
+    NONE(0);
 
     private final int reward;
 
@@ -24,7 +26,7 @@ public enum Rank {
             }
             case 4 -> Rank.FOURTH;
             case 3 -> Rank.FIFTH;
-            default -> throw new IllegalStateException("Unexpected value: " + matchCount);
+            default -> Rank.NONE;
         };
     }
 
@@ -40,5 +42,11 @@ public enum Rank {
                 Rank.FOURTH,
                 Rank.FIFTH
         );
+    }
+
+    public static double totalMoney(EnumMap<Rank, Integer> matchLotto) {
+        return matchLotto.entrySet().stream()
+                .mapToDouble(rank -> rank.getValue() * rank.getKey().getReward())
+                .sum();
     }
 }
