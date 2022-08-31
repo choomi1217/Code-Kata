@@ -4,10 +4,13 @@ import domain.Lotto;
 import domain.LottoNumber;
 import domain.Rank;
 
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.stream.Collectors;
 
 public class ConsoleOut {
+
+    private final DecimalFormat decimalFormat = new DecimalFormat("0.#");
 
     public void buyLotto() {
         System.out.println("구입금액을 입력해주세요.");
@@ -21,6 +24,7 @@ public class ConsoleOut {
         String buyNumbers = lotto.getNumbers()
                 .stream()
                 .map(LottoNumber::get)
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
 
@@ -48,7 +52,7 @@ public class ConsoleOut {
         System.out.printf("%d개 일치 (%d원)-%d개\n", matchCount, rank.getReward(), lottoCounts);
     }
     public void printYield(double yield) {
-        System.out.printf("총 수익률은 %f입니다.", yield);
+        System.out.printf("총 수익률은 %s입니다.", decimalFormat.format(yield));
     }
 
 

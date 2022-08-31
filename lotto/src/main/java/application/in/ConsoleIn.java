@@ -17,4 +17,8 @@ public class ConsoleIn {
     public int inputBonusBall() {
         return scanner.nextInt();
     }
+
+    public void close() {
+        scanner.close();
+    }
 }
