@@ -1,0 +1,68 @@
+ @startuml
+
+enum TrumpNumber {
+    ACE(1),
+    TWO(2),
+    THREE(3),
+    FOUR(4),
+    FIVE(5),
+    SIX(6),
+    SEVEN(7),
+    EIGHT(8),
+    NINE(9),
+    TEN(10),
+    JACK(10),
+    QUEEN(10),
+    KING(10)
+}
+
+enum Suit {
+    SPADES, CLOVER, HEART, DIAMONDS
+}
+
+class Card {
+    suit: Suit
+    number: TrumpNumber
+}
+
+class CardDeck {
+    allCard: ArrayDeque<Card>
+}
+
+interface Player {
+    딜러(List<Card>, Hits)
+    사용자(List<Card>, Hits)
+}
+
+class Dealer implements Player {
+    allCard: CardDeck
+    dealerCard: List<Card>
+    dealerHits: Hits
+}
+
+class Gamer implements Player {
+    gamerCard: List<Card>
+    gamerHits: Hits
+}
+
+class Game {
+    gamer: List<Player>
+    dealer: Player
+}
+
+class Hits {
+    더 받기()
+    현재 카드값의 총합()
+    21()
+}
+
+/'그만두기랑 카드 더 받기는 게이머한테만 있으면 되고
+딜러는 16이하이면 더 받기 16초과면 그만두기
+그만두기, 더 받기
+__개뻘짓__으로 확장성을 고려하여 사용자의 받기와 딜러의 받기를 다르게 구현하기 위해 Interface로 구현한다.
+딜러와 사용자가 같은 메서드를 사용해야 한다.
+그걸 인터페이스로 구현할 필요가 있을까?
+그리고 더 받았는데 21 이상이면 게임이 끝나니까 21이 초과 되었는지 확인하는 메소드만 공통적으로 있으면 될 것 같아'/
+
+
+@enduml
