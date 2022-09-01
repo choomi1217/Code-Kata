@@ -40,6 +40,23 @@ public class Cars {
     }
 
     public List<Car> getPlyaerRanking() {
+        /*
+        - cars를 정렬해서 List로
+        (망주, 4)
+        (거니, 4)
+        (앵미, 5)
+
+        - forwardState를 정렬 & 중복제거 해서 map으로
+        (4,2)
+        (5,1)
+
+        - map.get( cars.forwardState ) -> 하면 순위가 나옴
+
+        그럼 이름은 어케출력행
+
+        저 순위를 다시 rankingMap에 넣을 생각이얌
+        */
+
         List<Car> arr = List.of(
                 new Car("거니" ,8),
                 new Car("망주" ,7),
