@@ -23,9 +23,13 @@ public class CardDeck {
                 cardDeck.add(Card.of(suit, number));
             }
         }
-        Collections.shuffle(cardDeck);
+        shuffle(cardDeck);
 
         return new CardDeck(new ArrayDeque<>(cardDeck));
+    }
+
+    private static void shuffle(List<Card> cardDeck) {
+        Collections.shuffle(cardDeck);
     }
 
     public ArrayDeque<Card> getCardDeck() {
