@@ -29,9 +29,16 @@ class CardDeck {
     allCard: ArrayDeque<Card>
 }
 
+
+
 interface Player {
     딜러(List<Card>, Hits)
     사용자(List<Card>, Hits)
+}
+
+class Gamer implements Player {
+    gamerCard: List<Card>
+    gamerHits: Hits
 }
 
 class Dealer implements Player {
@@ -40,10 +47,6 @@ class Dealer implements Player {
     dealerHits: Hits
 }
 
-class Gamer implements Player {
-    gamerCard: List<Card>
-    gamerHits: Hits
-}
 
 class Game {
     gamer: List<Player>
@@ -53,7 +56,6 @@ class Game {
 class Hits {
     더 받기()
     현재 카드값의 총합()
-    21()
 }
 
 /'그만두기랑 카드 더 받기는 게이머한테만 있으면 되고
