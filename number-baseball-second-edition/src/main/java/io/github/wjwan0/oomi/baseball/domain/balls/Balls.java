@@ -7,14 +7,16 @@ import java.util.List;
 public class Balls {
     private final List<Ball> balls;
 
-    private Balls(int[] ballArray) {
-        balls = Arrays.stream(ballArray)
-                .mapToObj(Ball::new)
-                .toList();
+    private Balls(List<Ball> balls) {
+        this.balls = balls;
     }
 
     public static Balls of(int[] inputBalls) {
-        return new Balls(inputBalls);
+        List<Ball> balls = Arrays.stream(inputBalls)
+                .mapToObj(Ball::new)
+                .toList();
+
+        return new Balls(balls);
         // todo 빈배열 처리
     }
 
