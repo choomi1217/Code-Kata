@@ -12,7 +12,6 @@ public class CardDeckTest {
     @DisplayName("전체 카드덱 생성 테스트")
     void cardDeckContructorTest() {
         assertDoesNotThrow(CardDeck::from);
-
     }
 
     @Test
