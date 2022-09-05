@@ -40,4 +40,21 @@ public class CardDeck {
     public ArrayDeque<Card> allCard() {
         return new ArrayDeque<>(cardDeck);
     }
+
+    public Card drawCard() {
+        return cardDeck.poll();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CardDeck cardDeck1 = (CardDeck) o;
+        return Objects.equals(cardDeck, cardDeck1.cardDeck);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardDeck);
+    }
 }
