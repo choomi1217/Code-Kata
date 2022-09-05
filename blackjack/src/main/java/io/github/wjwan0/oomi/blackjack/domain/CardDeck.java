@@ -9,7 +9,7 @@ public class CardDeck {
 
     private static CardDeck deck = null;
 
-    private ArrayDeque<Card> cardDeck;
+    private final ArrayDeque<Card> cardDeck;
 
     private CardDeck(ArrayDeque<Card> cardDeck) {
         this.cardDeck = new ArrayDeque<>(cardDeck);
