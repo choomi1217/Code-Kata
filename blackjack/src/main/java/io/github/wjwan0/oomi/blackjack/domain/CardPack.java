@@ -1,26 +1,28 @@
 package io.github.wjwan0.oomi.blackjack.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Hits {
-    public boolean isWantDraw(String answer) {
-        return answer.equals("y");
+public class CardPack {
+
+    private final List<Card> cards;
+
+    private CardPack(List<Card> cards){
+        this.cards = new ArrayList<>(cards);
     }
 
-    /**
-     * 1. ace 카드 개수 뽑기
-     * 2. ace 제외한 거 총 합 구하기
-     * 3. 거기서 ace가 2장 이상일 경우 첫번째만 11인지 1인지 판별 나머지는 다 1만 더하기
-     * 총합 return
-     */
-    public int sumCard(List<Card> cardList) {
+    public static CardPack from(List<Card> cardList) {
+        return new CardPack(cardList);
+    }
 
-        int sum = cardList.stream()
+    public int totalScore() {
+
+        int sum = cards.stream()
                 .filter(card -> card.getTrumpNumber().getScore() != 1)
                 .mapToInt(card -> card.getTrumpNumber().getScore())
                 .sum();
 
-        int aceCount = (int) cardList.stream()
+        int aceCount = (int) cards.stream()
                 .filter(card -> card.getTrumpNumber().getScore() == 1)
                 .count();
 
@@ -36,10 +38,18 @@ public class Hits {
             return sum + aceCount;
         }
 
-        if(sum < 11){
+        if (sum < 11) {
             return sum + (aceCount * 11);
         }
 
         return sum + aceCount;
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public List<Card> getAllCard() {
+        return new ArrayList<>(cards);
     }
 }
