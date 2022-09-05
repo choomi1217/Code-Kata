@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -14,29 +13,35 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HitsTest {
+class CardPackTest {
 
     @Test
-    void Hits_생성_테스트() {
-        assertDoesNotThrow(Hits::new);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "y",
-            "n"
-    })
-    void 받기_테스트(String answer) {
-        Hits hits = new Hits();
-        assertEquals(hits.isWantDraw(answer), "y".equals(answer));
+    void CardManager_생성_테스트() {
+        assertDoesNotThrow(() -> CardPack.from(List.of(
+                Card.of(Suit.SPADES, TrumpNumber.ACE),
+                Card.of(Suit.SPADES, TrumpNumber.KING)
+        )));
     }
 
     @ParameterizedTest
     @MethodSource("현재_카드_총_합")
     void 현재_카드_총_합_테스트(List<Card> cardList, int score) {
-        Hits hits = new Hits();
-        int sum = hits.sumCard(cardList);
+        CardPack cardPack = CardPack.from(cardList);
+        int sum = cardPack.totalScore();
         assertEquals(sum, score);
+    }
+
+    @Test
+    void 카드_추가_테스트() {
+        CardPack cardPack = CardPack.from(List.of(
+                Card.of(Suit.CLOVER, TrumpNumber.THREE),
+                Card.of(Suit.CLOVER, TrumpNumber.FOUR)
+        ));
+
+        cardPack.addCard(Card.of(Suit.DIAMONDS, TrumpNumber.ACE));
+
+        assertEquals(cardPack.getAllCard().size(), 3);
+
     }
 
     private static Stream<Arguments> 현재_카드_총_합() {
