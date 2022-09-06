@@ -1,0 +1,49 @@
+@startuml
+
+abstract class Character {
+    fight()
+    setWeapon(WeaponBehavior weaponBehavior)
+}
+
+class Queen extends Character {
+    fight()
+}
+
+class King extends Character {
+    fight()
+}
+
+class Troll extends Character {
+    fight()
+}
+
+class Knight extends Character {
+    fight()
+}
+
+interface WeaponBehavior {
+    useWeapon();
+}
+
+class KnifeBehavior implements WeaponBehavior {
+    useWeapon(칼로 베기 구현)
+}
+
+class BowAndArrow implements WeaponBehavior {
+    useWeapon(화살 쏘기 구현)
+}
+
+class Axe implements WeaponBehavior {
+    useWeapon(도끼로 찍기 구현)
+}
+
+class Sword implements WeaponBehavior {
+    useWeapon(검 휘두르기 구현)
+}
+
+Character *-- WeaponBehavior : use
+
+
+
+
+@enduml

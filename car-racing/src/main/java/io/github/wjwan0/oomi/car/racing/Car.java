@@ -1,11 +1,17 @@
 package io.github.wjwan0.oomi.car.racing;
 
-public class Car implements Comparable<Car> {
+public class Car {
     private final String name;
 
     private int forwardState = 0;
 
     private final Move move;
+
+    public Car(String name, int forwardState) {
+        this.name = name;
+        this.forwardState = forwardState;
+        this.move = new MoveImpl();
+    }
 
     public Car(String name, Move move) {
         validation(name);
@@ -32,18 +38,12 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public String getForwardState() {
-        // todo 도메인이 output을 만드는게 아니담
-        return "-".repeat(Math.max(0, forwardState));
+    public int getForwardState() {
+        return forwardState;
     }
 
     @Override
     public String toString() {
         return name + ": " + getForwardState();
     }
-
-    @Override
-    public int compareTo(Car o) {
-        return Integer.compare(o.forwardState, forwardState);
-    }//ㄱㅓ니바보 거니바보 거니 바보 거니바보 거니바보 거니바보바보바보 거니 멍충이 거니 바보멍충이
 }

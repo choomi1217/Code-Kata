@@ -5,9 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
@@ -49,7 +46,7 @@ public class CarTest {
 
         car.moveForwardCheck();
 
-        assertThat(car.getForwardState()).isEqualTo("-");
+        assertThat(car.getForwardState()).isEqualTo(1);
     }
 
     @Test
@@ -58,19 +55,6 @@ public class CarTest {
 
         car.moveForwardCheck();
 
-        assertThat(car.getForwardState()).isEqualTo("");
-    }
-
-    @Test
-    void 정렬_테스트() {
-        List<Car> cars = new ArrayList<>();
-        cars.add(new Car("first", alwaysNotMove));
-        cars.add(new Car("secon", alwaysMove));
-
-        cars.forEach(Car::moveForwardCheck);
-        cars.sort(Car::compareTo);
-
-        assertThat(cars.get(0).getCarName()).isEqualTo("secon");
-
+        assertThat(car.getForwardState()).isEqualTo(0);
     }
 }

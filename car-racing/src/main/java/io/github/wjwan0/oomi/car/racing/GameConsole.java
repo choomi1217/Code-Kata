@@ -10,20 +10,33 @@ public class GameConsole {
 
     public void init() {
 
-        Cars cars = in.makeCars();
+        String makeCars = in.makeCars();
 
-        int gameCount = in.askingGameCount();
-        in.closeScanner();
 
-        System.out.println("실행 결과");
+        try {
+            Cars cars = Cars.from(makeCars);
+
+            int gameCount = in.askingGameCount();
+
+            System.out.println("실행 결과");
+            playGame(cars, gameCount);
+            System.out.println("결과 출력");
+            out.carsState(cars);
+            out.resultOut(cars.getWinnerCarList());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            init();
+        } finally {
+            in.closeScanner();
+        }
+
+
+    }
+
+    private void playGame(Cars cars, int gameCount) {
         for (int i = 0; i < gameCount; i++) {
             cars.run();
             out.carsState(cars);
         }
-
-        System.out.println("결과 출력");
-        out.carsState(cars);
-
-        out.resultOut(cars.getWinnerCarList());
     }
 }
