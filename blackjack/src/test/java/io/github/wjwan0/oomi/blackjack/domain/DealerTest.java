@@ -25,10 +25,10 @@ public class DealerTest {
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )), CardPack.from());
-        Gamer gamer = Gamer.from(CardDeck.from(List.of(
+        Gamer gamer = Gamer.of(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
-        )));
+        )),"name");
 
         //when
         dealer.drawCard(gamer);
