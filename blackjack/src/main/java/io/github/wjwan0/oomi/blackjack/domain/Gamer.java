@@ -4,27 +4,27 @@ import java.util.List;
 
 public class Gamer {
 
-    private final CardPack cardPack;
+    private final CardDeck cardDeck;
     private int bettingMoney = 0;
 
-    private Gamer(CardPack cardPack) {
-        this.cardPack = cardPack;
+    private Gamer(CardDeck cardDeck) {
+        this.cardDeck = cardDeck;
     }
 
-    public static Gamer from(CardPack cardPack) {
-        return new Gamer(cardPack);
+    public static Gamer from(CardDeck cardDeck) {
+        return new Gamer(cardDeck);
     }
 
     public void isWantDraw(Card card) {
-        cardPack.addCard(card);
+        cardDeck.addCard(card);
     }
 
     public int sumCard() {
-        return cardPack.totalScore();
+        return cardDeck.totalScore();
     }
 
     public List<Card> getCards() {
-        return cardPack.getAllCard();
+        return cardDeck.getAllCard();
     }
 
     public boolean isBetting(String answer) {

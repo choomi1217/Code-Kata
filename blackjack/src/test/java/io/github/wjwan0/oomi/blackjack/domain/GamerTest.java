@@ -12,7 +12,7 @@ public class GamerTest {
 
     @Test
     void 게이머_생성_테스트() {
-        assertDoesNotThrow(() -> Gamer.from(CardPack.from(List.of(
+        assertDoesNotThrow(() -> Gamer.from(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         ))));
@@ -20,7 +20,7 @@ public class GamerTest {
 
     @Test
     void 카드_합_더하기_테스트() {
-        Gamer gamer = Gamer.from(CardPack.from(List.of(
+        Gamer gamer = Gamer.from(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )));
@@ -31,7 +31,7 @@ public class GamerTest {
     @Test
     void 카드_뽑기_테스트() {
 
-        Gamer gamer = Gamer.from(CardPack.from(List.of(
+        Gamer gamer = Gamer.from(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )));
@@ -43,7 +43,7 @@ public class GamerTest {
 
     @Test
     void 배팅_여부_테스트() {
-        Gamer gamer = Gamer.from(CardPack.from(List.of(
+        Gamer gamer = Gamer.from(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )));
@@ -53,7 +53,7 @@ public class GamerTest {
 
     @Test
     void 배팅_금액_테스트() {
-        Gamer gamer = Gamer.from(CardPack.from(List.of(
+        Gamer gamer = Gamer.from(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )));
@@ -67,7 +67,7 @@ public class GamerTest {
 //        Card firstCard = Card.of(Suit.CLOVER, TrumpNumber.ACE);
 //        Card secondCard = Card.of(Suit.SPADES, TrumpNumber.KING);
 //
-//        Gamer gamer = Gamer.from(new CardPack());
+//        Gamer gamer = Gamer.from(new CardDeck());
 //        assertTrue();
 //        gamer.checkBlackJack();
 //    }

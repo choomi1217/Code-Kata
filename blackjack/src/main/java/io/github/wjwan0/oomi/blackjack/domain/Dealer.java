@@ -2,29 +2,29 @@ package io.github.wjwan0.oomi.blackjack.domain;
 
 public class Dealer {
 
-    private final CardPack cardPack;
     private final CardDeck cardDeck;
+    private final CardPack cardPack;
 
-    private Dealer(CardPack cardPack, CardDeck cardDeck) {
-        this.cardPack = cardPack;
+    private Dealer(CardDeck cardDeck, CardPack cardPack) {
         this.cardDeck = cardDeck;
+        this.cardPack = cardPack;
     }
 
-    public static Dealer from(CardPack cardPack, CardDeck cardDeck) {
-        return new Dealer(cardPack, cardDeck);
+    public static Dealer from(CardDeck cardDeck, CardPack cardPack) {
+        return new Dealer(cardDeck, cardPack);
     }
 
     public void drawCard(Gamer gamer) {
-        gamer.isWantDraw(cardDeck.drawCard());
+        gamer.isWantDraw(cardPack.drawCard());
     }
 
     public void drawCard() {
-        if (cardPack.totalScore() <= 16) {
-            cardPack.addCard(cardDeck.drawCard());
+        if (cardDeck.totalScore() <= 16) {
+            cardDeck.addCard(cardPack.drawCard());
         }
     }
 
     public int totalScore() {
-        return cardPack.totalScore();
+        return cardDeck.totalScore();
     }
 }
