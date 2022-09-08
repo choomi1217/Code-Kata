@@ -15,7 +15,7 @@ public class Dealer {
     }
 
     public void drawCard(Gamer gamer) {
-        gamer.isWantDraw(cardPack.drawCard());
+        gamer.drawCard(cardPack.drawCard());
     }
 
     public void drawCard() {
@@ -26,5 +26,9 @@ public class Dealer {
 
     public int totalScore() {
         return cardDeck.totalScore();
+    }
+
+    public CardDeck cardDeck() {
+        return cardDeck;
     }
 }
