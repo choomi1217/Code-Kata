@@ -1,60 +1,55 @@
 package io.github.wjwan0.oomi.blackjack.domain;
 
-import io.github.wjwan0.oomi.blackjack.domain.trump.Suit;
-import io.github.wjwan0.oomi.blackjack.domain.trump.TrumpNumber;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardDeck {
 
-    private static CardDeck deck = null;
+    private final List<Card> cards;
 
-    private final ArrayDeque<Card> cardDeck;
-
-    private CardDeck(ArrayDeque<Card> cardDeck) {
-        this.cardDeck = new ArrayDeque<>(cardDeck);
+    private CardDeck(List<Card> cards){
+        this.cards = new ArrayList<>(cards);
     }
 
-    public static CardDeck from() {
-        if (deck == null) {
-            deck = new CardDeck(new ArrayDeque<>(makeCardDeck()));
+    public static CardDeck from(List<Card> cardList) {
+        return new CardDeck(cardList);
+    }
+
+    public int totalScore() {
+
+        int sum = cards.stream()
+                .filter(card -> card.getTrumpNumber().getScore() != 1)
+                .mapToInt(card -> card.getTrumpNumber().getScore())
+                .sum();
+
+        int aceCount = (int) cards.stream()
+                .filter(card -> card.getTrumpNumber().getScore() == 1)
+                .count();
+
+        if (aceCount == 0) {
+            return sum;
         }
-        return deck;
-    }
 
-    private static List<Card> makeCardDeck() {
-        List<Card> cardDeck = new ArrayList<>();
-        for (Suit suit : Suit.values()) {
-            for (TrumpNumber number : TrumpNumber.values()) {
-                cardDeck.add(Card.of(suit, number));
-            }
+        if (aceCount >= 2 && sum + aceCount - 1 <= 10) {
+            return sum + aceCount - 1 + 11;
         }
-        shuffle(cardDeck);
-        return cardDeck;
+
+        if (aceCount >= 2) {
+            return sum + aceCount;
+        }
+
+        if (sum < 11) {
+            return sum + (aceCount * 11);
+        }
+
+        return sum + aceCount;
     }
 
-    private static void shuffle(List<Card> cardDeck) {
-        Collections.shuffle(cardDeck);
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
-    public ArrayDeque<Card> allCard() {
-        return new ArrayDeque<>(cardDeck);
-    }
-
-    public Card drawCard() {
-        return cardDeck.poll();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CardDeck cardDeck1 = (CardDeck) o;
-        return Objects.equals(cardDeck, cardDeck1.cardDeck);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cardDeck);
+    public List<Card> getAllCard() {
+        return new ArrayList<>(cards);
     }
 }
