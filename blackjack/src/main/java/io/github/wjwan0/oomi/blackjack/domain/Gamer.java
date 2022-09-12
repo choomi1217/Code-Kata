@@ -28,9 +28,7 @@ public class Gamer {
         return this.gamerName;
     }
 
-    public void drawCard(Card card) {
-        cardDeck.addCard(card);
-    }
+    public void drawCard(Card card) { cardDeck.addCard(card); }
 
     public int sumCard() {
         return cardDeck.totalScore();
