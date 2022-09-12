@@ -11,38 +11,6 @@ import java.util.Queue;
 import static java.util.stream.Collectors.toCollection;
 
 public class ConsoleOut {
-    /*
-        pobi의 배팅 금액은?
-
-        jason의 배팅 금액은?
-
-        딜러와 pobi, jason에게 2장의 나누었습니다.
-        딜러: 3다이아몬드
-        pobi카드: 2하트, 8스페이드
-        jason카드: 7클로버, K스페이드
-
-        pobi는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)
-
-        pobi카드: 2하트, 8스페이드, A클로버
-
-        pobi는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)
-
-        jason은 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)
-
-        jason카드: 7클로버, K스페이드
-
-        딜러는 16이하라 한장의 카드를 더 받았습니다.
-
-        딜러 카드: 3다이아몬드, 9클로버, 8다이아몬드 - 결과: 20
-        pobi카드: 2하트, 8스페이드, A클로버 - 결과: 21
-        jason카드: 7클로버, K스페이드 - 결과: 17
-
-        ## 최종 수익
-        딜러: 10000
-        pobi: 10000
-        jason: -20000
-     */
-
     public void inputGamersComment() {
         System.out.println("게임에 참여할 사람의 이름을 입력하세요.(쉼표 기준으로 분리)");
     }
@@ -87,12 +55,48 @@ public class ConsoleOut {
         System.out.println(result);
     }
 
+    public void resultDealerCards(Dealer dealer) {
+        Queue<Card> dealerCard = new LinkedList<>(dealer.cardDeck().cardDeck());
+        StringBuilder result = new StringBuilder();
+        result.append("딜러: ");
+
+        cardFormatting(dealerCard, result);
+        int resultCard = dealer.cardDeck().cardDeck().stream()
+                .mapToInt(card -> card.trumpNumber().getScore())
+                .sum();
+        result.append(String.format(" - 결과: %d", resultCard));
+        System.out.println(result);
+    }
+
+    public void resultGamerCards(Gamer gamer) {
+        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards());
+        StringBuilder result = new StringBuilder();
+        String nameFormat = String.format("%s카드: ", gamer.getGamerName());
+
+        result.append(nameFormat);
+
+        cardFormatting(gamerCard, result);
+        int resultCard = gamer.getCards().stream()
+                .mapToInt(card -> card.trumpNumber().getScore())
+                .sum();
+        result.append(String.format(" - 결과: %d", resultCard));
+        System.out.println(result);
+    }
+
     public void gamerMoreCardComment(Gamer gamer) {
         System.out.printf("%s는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)\n", gamer.getGamerName());
     }
 
     public void dealerMoreCardComment() {
         System.out.println("딜러는 16이하라 한장의 카드를 더 받았습니다.");
+    }
+
+    public void endGame(Dealer dealer, Gamers gamers) {
+        System.out.println("## 최종 수익");
+        System.out.println("딜러: " + dealer.getMoney());
+        for (Gamer gamer : gamers.gamerList()) {
+            System.out.printf("%s: %d%n", gamer.getGamerName(), gamer.getMoney());
+        }
     }
 
     /*

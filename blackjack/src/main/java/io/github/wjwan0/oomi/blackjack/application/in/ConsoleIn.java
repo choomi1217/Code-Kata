@@ -1,5 +1,6 @@
 package io.github.wjwan0.oomi.blackjack.application.in;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConsoleIn {
@@ -7,7 +8,12 @@ public class ConsoleIn {
     private final static Scanner scanner = new Scanner(System.in);
 
     public String enterGamerName() {
-        return scanner.nextLine();
+        try {
+            return scanner.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("빈 값은 입력할 수 없습니다.");
+            return enterGamerName();
+        }
     }
 
     public int betting() {

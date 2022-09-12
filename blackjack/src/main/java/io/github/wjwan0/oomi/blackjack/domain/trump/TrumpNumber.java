@@ -16,11 +16,7 @@ public enum TrumpNumber {
     KING(10, "K");
 
     private final int score;
-    private String name;
-
-    TrumpNumber(int score) {
-        this.score = score;
-    }
+    private final String name;
 
     TrumpNumber(int score, String name) {
         this.score = score;

@@ -5,6 +5,16 @@ public class Dealer {
     private final CardDeck cardDeck;
     private final CardPack cardPack;
 
+    private int money;
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
     private Dealer(CardDeck cardDeck, CardPack cardPack) {
         this.cardDeck = cardDeck;
         this.cardPack = cardPack;
@@ -30,5 +40,9 @@ public class Dealer {
 
     public CardDeck cardDeck() {
         return cardDeck;
+    }
+
+    public CardPack getCardPack() {
+        return cardPack;
     }
 }
