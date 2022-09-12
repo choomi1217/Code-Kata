@@ -1,7 +1,5 @@
 package io.github.wjwan0.oomi.blackjack.domain;
 
-import java.util.List;
-
 public class Gamer {
 
     private final CardDeck cardDeck;
@@ -20,22 +18,24 @@ public class Gamer {
 
     private static void validation(String gamerName) {
         if (gamerName == null || gamerName.isBlank()) {
-            throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
+            throw new IllegalArgumentException("이름은 비어있 을 수 없습니다.");
         }
     }
 
-    public String getGamerName(){
+    public String getGamerName() {
         return this.gamerName;
     }
 
-    public void drawCard(Card card) { cardDeck.addCard(card); }
+    public void drawCard(Card card) {
+        cardDeck.addCard(card);
+    }
 
-    public int sumCard() {
+    public int totalScore() {
         return cardDeck.totalScore();
     }
 
-    public List<Card> getCards() {
-        return cardDeck.cardDeck();
+    public CardDeck getCards() {
+        return cardDeck;
     }
 
     public boolean isBetting(String answer) {

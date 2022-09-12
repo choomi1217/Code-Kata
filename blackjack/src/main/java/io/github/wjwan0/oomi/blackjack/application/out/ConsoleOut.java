@@ -1,9 +1,6 @@
 package io.github.wjwan0.oomi.blackjack.application.out;
 
-import io.github.wjwan0.oomi.blackjack.domain.Card;
-import io.github.wjwan0.oomi.blackjack.domain.Dealer;
-import io.github.wjwan0.oomi.blackjack.domain.Gamer;
-import io.github.wjwan0.oomi.blackjack.domain.Gamers;
+import io.github.wjwan0.oomi.blackjack.domain.*;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -45,7 +42,7 @@ public class ConsoleOut {
     }
 
     public void showGamerCards(Gamer gamer) {
-        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards());
+        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards().cardDeck());
         StringBuilder result = new StringBuilder();
         String nameFormat = String.format("%s카드: ", gamer.getGamerName());
 
@@ -61,25 +58,30 @@ public class ConsoleOut {
         result.append("딜러: ");
 
         cardFormatting(dealerCard, result);
-        int resultCard = dealer.cardDeck().cardDeck().stream()
-                .mapToInt(card -> card.trumpNumber().getScore())
-                .sum();
-        result.append(String.format(" - 결과: %d", resultCard));
-        System.out.println(result);
+        getGameResult(dealer.cardDeck(), result);
     }
 
     public void resultGamerCards(Gamer gamer) {
-        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards());
+        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards().cardDeck());
         StringBuilder result = new StringBuilder();
         String nameFormat = String.format("%s카드: ", gamer.getGamerName());
 
         result.append(nameFormat);
 
         cardFormatting(gamerCard, result);
-        int resultCard = gamer.getCards().stream()
+        getGameResult(gamer.getCards(), result);
+    }
+
+    private void getGameResult(CardDeck gamer, StringBuilder result) {
+        int resultCardScore = gamer.cardDeck().stream()
                 .mapToInt(card -> card.trumpNumber().getScore())
                 .sum();
-        result.append(String.format(" - 결과: %d", resultCard));
+        String content;
+        content = String.format(" - 결과: %d", resultCardScore);
+        if (resultCardScore > 21) {
+            content = " - 결과: 사망";
+        }
+        result.append(content);
         System.out.println(result);
     }
 

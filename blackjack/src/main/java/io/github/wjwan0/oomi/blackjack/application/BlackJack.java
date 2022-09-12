@@ -5,15 +5,12 @@ import io.github.wjwan0.oomi.blackjack.application.out.ConsoleOut;
 import io.github.wjwan0.oomi.blackjack.domain.*;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class BlackJack {
     private final ConsoleOut consoleOut = new ConsoleOut();
     private final ConsoleIn consoleIn = new ConsoleIn();
-
     private final Dealer dealer;
 
-    Scanner scanner = new Scanner(System.in);
 
     private BlackJack(Dealer dealer) {
         this.dealer = dealer;
@@ -62,6 +59,10 @@ public class BlackJack {
 
     private void moreCardGamer(Gamer gamer) {
         do {
+            if (gamer.getCards().totalScore() > 21) {
+                System.out.println("21을 초과하여 카드를 더 받을 수 없습니다.");
+                break;
+            }
             consoleOut.gamerMoreCardComment(gamer);
             if (gamer.drawCard(consoleIn.askMoreCard())) {
                 dealer.drawCard(gamer);
