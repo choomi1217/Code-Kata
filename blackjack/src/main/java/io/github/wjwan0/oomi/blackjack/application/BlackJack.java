@@ -5,12 +5,15 @@ import io.github.wjwan0.oomi.blackjack.application.out.ConsoleOut;
 import io.github.wjwan0.oomi.blackjack.domain.*;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class BlackJack {
     private final ConsoleOut consoleOut = new ConsoleOut();
     private final ConsoleIn consoleIn = new ConsoleIn();
 
     private final Dealer dealer;
+
+    Scanner scanner = new Scanner(System.in);
 
     private BlackJack(Dealer dealer) {
         this.dealer = dealer;
@@ -43,15 +46,7 @@ public class BlackJack {
         consoleOut.showDealerCards(dealer);
         gamerList.forEach(consoleOut::showGamerCards);
 
-        /*
-        gamerList.forEach(gamer -> {
-           do {
-               consoleOut.gamerMoreCardComment(gamer);
-               gamer.drawCard(cardPack.drawCard());
-               consoleOut.showGamerCards(gamer);
-            }while (consoleIn.askMoreCard());
-        });
-         */
+        gamerList.forEach(this::moreCardGamer);
 
         while (16 >= dealer.totalScore()) {
             consoleOut.dealerMoreCardComment();
@@ -63,5 +58,17 @@ public class BlackJack {
 
         consoleOut.endGame(dealer, gamers);
 
+    }
+
+    private void moreCardGamer(Gamer gamer) {
+        do {
+            consoleOut.gamerMoreCardComment(gamer);
+            if (gamer.drawCard(consoleIn.askMoreCard())) {
+                dealer.drawCard(gamer);
+                consoleOut.showGamerCards(gamer);
+                continue;
+            }
+            break;
+        } while (true);
     }
 }
