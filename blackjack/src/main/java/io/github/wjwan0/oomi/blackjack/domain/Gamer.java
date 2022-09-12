@@ -32,7 +32,7 @@ public class Gamer {
     }
 
     public List<Card> getCards() {
-        return cardDeck.getAllCard();
+        return cardDeck.cardDeck();
     }
 
     public boolean isBetting(String answer) {

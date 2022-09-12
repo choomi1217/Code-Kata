@@ -40,7 +40,7 @@ class CardDeckTest {
 
         cardDeck.addCard(Card.of(Suit.DIAMONDS, TrumpNumber.ACE));
 
-        assertEquals(cardDeck.getAllCard().size(), 3);
+        assertEquals(cardDeck.cardDeck().size(), 3);
 
     }
 

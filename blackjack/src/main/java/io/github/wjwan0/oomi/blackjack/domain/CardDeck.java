@@ -18,12 +18,12 @@ public class CardDeck {
     public int totalScore() {
 
         int sum = cards.stream()
-                .filter(card -> card.getTrumpNumber().getScore() != 1)
-                .mapToInt(card -> card.getTrumpNumber().getScore())
+                .filter(card -> card.trumpNumber().getScore() != 1)
+                .mapToInt(card -> card.trumpNumber().getScore())
                 .sum();
 
         int aceCount = (int) cards.stream()
-                .filter(card -> card.getTrumpNumber().getScore() == 1)
+                .filter(card -> card.trumpNumber().getScore() == 1)
                 .count();
 
         if (aceCount == 0) {
@@ -49,7 +49,7 @@ public class CardDeck {
         cards.add(card);
     }
 
-    public List<Card> getAllCard() {
+    public List<Card> cardDeck() {
         return new ArrayList<>(cards);
     }
 }
