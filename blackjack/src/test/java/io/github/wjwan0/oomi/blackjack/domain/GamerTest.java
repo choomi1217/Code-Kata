@@ -62,6 +62,4 @@ public class GamerTest {
         assertEquals(gamer.getMoney(), 10_000);
     }
 
-
-
 }

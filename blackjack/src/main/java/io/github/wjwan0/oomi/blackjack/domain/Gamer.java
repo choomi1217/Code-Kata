@@ -8,8 +8,9 @@ public class Gamer {
     private int money = 0;
     private final String gamerName;
 
-    private Gamer(CardDeck cardDeck) {
+    private Gamer(CardDeck cardDeck, String gamerName) {
         this.cardDeck = cardDeck;
+        this.gamerName = gamerName;
     }
 
     public static Gamer of(CardDeck cardDeck, String gamerName) {
@@ -23,7 +24,11 @@ public class Gamer {
         }
     }
 
-    public void isWantDraw(Card card) {
+    public String getGamerName(){
+        return this.gamerName;
+    }
+
+    public void drawCard(Card card) {
         cardDeck.addCard(card);
     }
 
