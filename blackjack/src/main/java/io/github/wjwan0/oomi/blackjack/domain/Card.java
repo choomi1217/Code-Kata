@@ -13,7 +13,7 @@ public class Card {
         this.trumpNumber = trumpNumber;
     }
 
-    public static Card of(Suit suit, TrumpNumber trumpNumber){
+    public static Card of(Suit suit, TrumpNumber trumpNumber) {
         return new Card(suit, trumpNumber);
     }
 
@@ -21,8 +21,12 @@ public class Card {
         return suit;
     }
 
-    public TrumpNumber trumpNumber() {
-        return trumpNumber;
+    public int trumpNumber() {
+        return trumpNumber.getScore();
+    }
+
+    public String trumpName() {
+        return trumpNumber.getName();
     }
 
 }
