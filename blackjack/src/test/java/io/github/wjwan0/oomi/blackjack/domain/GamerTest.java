@@ -38,7 +38,7 @@ public class GamerTest {
 
         gamer.give(Card.of(Suit.CLOVER, TrumpNumber.ACE));
 
-        assertEquals(gamer.gamerCardDeck().cardDeck().size(), 3);
+        assertEquals(gamer.cardDeck().cardDeck().size(), 3);
     }
 
     @Test
