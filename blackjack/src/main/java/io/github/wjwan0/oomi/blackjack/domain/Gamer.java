@@ -1,15 +1,14 @@
 package io.github.wjwan0.oomi.blackjack.domain;
 
-import java.util.List;
-
 public class Gamer {
 
     private final CardDeck cardDeck;
     private int money = 0;
     private final String gamerName;
 
-    private Gamer(CardDeck cardDeck) {
+    private Gamer(CardDeck cardDeck, String gamerName) {
         this.cardDeck = cardDeck;
+        this.gamerName = gamerName;
     }
 
     public static Gamer of(CardDeck cardDeck, String gamerName) {
@@ -19,20 +18,24 @@ public class Gamer {
 
     private static void validation(String gamerName) {
         if (gamerName == null || gamerName.isBlank()) {
-            throw new IllegalArgumentException("이름은 비어있을 수 없습니다.");
+            throw new IllegalArgumentException("이름은 비어있 을 수 없습니다.");
         }
     }
 
-    public void isWantDraw(Card card) {
+    public String getGamerName() {
+        return this.gamerName;
+    }
+
+    public void drawCard(Card card) {
         cardDeck.addCard(card);
     }
 
-    public int sumCard() {
+    public int totalScore() {
         return cardDeck.totalScore();
     }
 
-    public List<Card> getCards() {
-        return cardDeck.getAllCard();
+    public CardDeck getCards() {
+        return cardDeck;
     }
 
     public boolean isBetting(String answer) {

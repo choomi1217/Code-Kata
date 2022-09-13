@@ -13,10 +13,10 @@ public class GamersTest {
         //given
         List<Card> cards = List.of(Card.of(Suit.DIAMONDS, TrumpNumber.ACE));
         CardDeck cardDeck = CardDeck.from(cards);
-        List<Gamer> gamers = List.of(Gamer.of(cardDeck, "name"));
+        Dealer dealer = Dealer.from(cardDeck, CardPack.from());
 
         //then
-        Assertions.assertDoesNotThrow(() -> Gamers.from(gamers));
+        Assertions.assertDoesNotThrow(() -> Gamers.from("wanjoo", dealer));
     }
 
 

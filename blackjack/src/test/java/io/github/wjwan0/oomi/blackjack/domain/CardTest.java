@@ -26,7 +26,7 @@ public class CardTest {
     @DisplayName("카드 get 테스트")
     void getCardTest() {
         Card card = Card.of(Suit.CLOVER, TrumpNumber.ACE);
-        assertEquals(card.getTrumpNumber(), TrumpNumber.ACE);
+        assertEquals(card.trumpNumber(), TrumpNumber.ACE);
     }
 
     public static Stream<Arguments> cardConstructorTest(){

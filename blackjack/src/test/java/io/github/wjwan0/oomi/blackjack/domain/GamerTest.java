@@ -25,7 +25,7 @@ public class GamerTest {
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )), "name");
 
-        assertEquals(gamer.sumCard(), 21);
+        assertEquals(gamer.totalScore(), 21);
     }
 
     @Test
@@ -61,7 +61,5 @@ public class GamerTest {
         gamer.bettingMoney(10_000);
         assertEquals(gamer.getMoney(), 10_000);
     }
-
-
 
 }

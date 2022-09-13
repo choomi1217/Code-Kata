@@ -17,7 +17,11 @@ public class Card {
         return new Card(suit, trumpNumber);
     }
 
-    public TrumpNumber getTrumpNumber() {
+    public Suit suit() {
+        return suit;
+    }
+
+    public TrumpNumber trumpNumber() {
         return trumpNumber;
     }
 
