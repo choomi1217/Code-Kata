@@ -12,7 +12,7 @@ public class DealerTest {
 
     @Test
     void 딜러_생성_테스트() {
-        assertDoesNotThrow(() -> Dealer.from(CardDeck.from(List.of(
+        assertDoesNotThrow(() -> Dealer.of(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )), CardPack.from()));
@@ -21,7 +21,7 @@ public class DealerTest {
     @Test
     void 카드_나눠주기_테스트() {
         //given
-        Dealer dealer = Dealer.from(CardDeck.from(List.of(
+        Dealer dealer = Dealer.of(CardDeck.from(List.of(
                 Card.of(Suit.SPADES, TrumpNumber.ACE),
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )), CardPack.from());
@@ -34,7 +34,7 @@ public class DealerTest {
         dealer.drawCard(gamer);
 
         //then
-        assertEquals(gamer.getCards().size(), 3);
+        assertEquals(gamer.cardDeck().cardDeck(), 3);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class DealerTest {
                 Card.of(Suit.SPADES, TrumpNumber.TWO));
         CardDeck cardDeck = CardDeck.from(cards);
 
-        Dealer dealer = Dealer.from(cardDeck, CardPack.from());
+        Dealer dealer = Dealer.of(cardDeck, CardPack.from());
 
         //when
         dealer.drawCard();
@@ -61,7 +61,7 @@ public class DealerTest {
                 Card.of(Suit.SPADES, TrumpNumber.NINE),
                 Card.of(Suit.SPADES, TrumpNumber.SEVEN));
         CardDeck cardDeck = CardDeck.from(cards);
-        Dealer dealer = Dealer.from(cardDeck, CardPack.from());
+        Dealer dealer = Dealer.of(cardDeck, CardPack.from());
 
         //when
         dealer.drawCard();
@@ -77,7 +77,7 @@ public class DealerTest {
                 Card.of(Suit.SPADES, TrumpNumber.KING),
                 Card.of(Suit.SPADES, TrumpNumber.SEVEN));
         CardDeck cardDeck = CardDeck.from(cards);
-        Dealer dealer = Dealer.from(cardDeck, CardPack.from());
+        Dealer dealer = Dealer.of(cardDeck, CardPack.from());
 
         //when
         dealer.drawCard();
@@ -93,7 +93,7 @@ public class DealerTest {
                 Card.of(Suit.SPADES, TrumpNumber.KING),
                 Card.of(Suit.SPADES, TrumpNumber.ACE));
         CardDeck cardDeck = CardDeck.from(cards);
-        Dealer dealer = Dealer.from(cardDeck, CardPack.from());
+        Dealer dealer = Dealer.of(cardDeck, CardPack.from());
 
         //when
         dealer.drawCard();
