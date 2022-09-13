@@ -34,7 +34,7 @@ public class Gamer {
         return cardDeck.totalScore();
     }
 
-    public CardDeck gamerCardDeck() {
+    public CardDeck cardDeck() {
         return cardDeck;
     }
 
@@ -53,7 +53,6 @@ public class Gamer {
     public void atStartBlackJack() {
         if(cardDeck.totalScore()==21){
             money = (int) (money * 1.5);
-        }
-    }
+        }    }
 }
 
