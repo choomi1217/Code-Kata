@@ -7,7 +7,7 @@ public class CardDeck {
 
     private final List<Card> cards;
 
-    private CardDeck(List<Card> cards){
+    private CardDeck(List<Card> cards) {
         this.cards = new ArrayList<>(cards);
     }
 
@@ -18,12 +18,12 @@ public class CardDeck {
     public int totalScore() {
 
         int sum = cards.stream()
-                .filter(card -> card.trumpNumber().getScore() != 1)
-                .mapToInt(card -> card.trumpNumber().getScore())
+                .filter(card -> card.trumpNumber() != 1)
+                .mapToInt(Card::trumpNumber)
                 .sum();
 
         int aceCount = (int) cards.stream()
-                .filter(card -> card.trumpNumber().getScore() == 1)
+                .filter(card -> card.trumpNumber() == 1)
                 .count();
 
         if (aceCount == 0) {
