@@ -5,6 +5,7 @@ import io.github.wjwan0.oomi.blackjack.application.out.ConsoleOut;
 import io.github.wjwan0.oomi.blackjack.domain.*;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BlackJack {
     private final ConsoleOut consoleOut = new ConsoleOut();
@@ -22,7 +23,7 @@ public class BlackJack {
                 cardPack.drawCard()
         );
         CardDeck dealerCardDeck = CardDeck.from(cards);
-        Dealer dealer = Dealer.from(dealerCardDeck, cardPack);
+        Dealer dealer = Dealer.of(dealerCardDeck, cardPack);
         return new BlackJack(dealer);
     }
 
@@ -31,9 +32,16 @@ public class BlackJack {
         consoleOut.inputGamersComment();
         String gamerNames = consoleIn.enterGamerName();
 
-        Gamers gamers = Gamers.from(gamerNames, dealer);
 
-        List<Gamer> gamerList = gamers.gamerList();
+        Gamers gamers = null;
+        try {
+            gamers = Gamers.from(gamerNames, dealer);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            this.init();
+        }
+
+        List<Gamer> gamerList = Objects.requireNonNull(gamers).gamerList();
         gamerList.forEach(gamer -> {
             consoleOut.inputBettingMoneyComment(gamer);
             gamer.bettingMoney(consoleIn.betting());
@@ -43,7 +51,10 @@ public class BlackJack {
         consoleOut.showDealerCards(dealer);
         gamerList.forEach(consoleOut::showGamerCards);
 
-        gamerList.forEach(this::moreCardGamer);
+        gamerList.forEach(gamer -> {
+            gamer.atStartBlackJack();
+            moreCard(gamer);
+        });
 
         while (16 >= dealer.totalScore()) {
             consoleOut.dealerMoreCardComment();
@@ -57,19 +68,23 @@ public class BlackJack {
 
     }
 
-    private void moreCardGamer(Gamer gamer) {
-        do {
-            if (gamer.getCards().totalScore() > 21) {
-                System.out.println("21을 초과하여 카드를 더 받을 수 없습니다.");
+    //todo: 1depth 수정 필요
+    private void moreCard(Gamer gamer) {
+        while (true) {
+            if (gamer.totalScore() > 21) {
+                break;
+            }
+            if (gamer.totalScore() == 21) {
+                consoleOut.blackJack();
                 break;
             }
             consoleOut.gamerMoreCardComment(gamer);
-            if (gamer.drawCard(consoleIn.askMoreCard())) {
+            if (consoleIn.askMoreCard()) {
                 dealer.drawCard(gamer);
                 consoleOut.showGamerCards(gamer);
                 continue;
             }
             break;
-        } while (true);
+        }
     }
 }
