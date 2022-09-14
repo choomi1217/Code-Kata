@@ -1,5 +1,6 @@
 package io.github.wjwan0.oomi.blackjack.application.in;
 
+import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -17,18 +18,24 @@ public class ConsoleIn {
     }
 
     public int betting() {
-        int bettingMoney = scanner.nextInt();
+        int bettingMoney;
+        try {
+            bettingMoney = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("숫자만 입력할 수 있습니다.");
+            return betting();
+        }
         scanner.nextLine();
         return bettingMoney;
     }
 
-    public String askMoreCard() {
+    public boolean askMoreCard() {
         String answer = scanner.nextLine();
         try {
             validationCheck(answer);
-            return answer;
+            return answer.equals("y");
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return askMoreCard();
         }
     }

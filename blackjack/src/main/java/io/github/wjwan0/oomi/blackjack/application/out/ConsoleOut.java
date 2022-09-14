@@ -42,7 +42,7 @@ public class ConsoleOut {
     }
 
     public void showGamerCards(Gamer gamer) {
-        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards().cardDeck());
+        Queue<Card> gamerCard = new LinkedList<>(gamer.cardDeck().cardDeck());
         StringBuilder result = new StringBuilder();
         String nameFormat = String.format("%s카드: ", gamer.getGamerName());
 
@@ -62,27 +62,14 @@ public class ConsoleOut {
     }
 
     public void resultGamerCards(Gamer gamer) {
-        Queue<Card> gamerCard = new LinkedList<>(gamer.getCards().cardDeck());
+        Queue<Card> gamerCard = new LinkedList<>(gamer.cardDeck().cardDeck());
         StringBuilder result = new StringBuilder();
         String nameFormat = String.format("%s카드: ", gamer.getGamerName());
 
         result.append(nameFormat);
 
         cardFormatting(gamerCard, result);
-        getGameResult(gamer.getCards(), result);
-    }
-
-    private void getGameResult(CardDeck gamer, StringBuilder result) {
-        int resultCardScore = gamer.cardDeck().stream()
-                .mapToInt(card -> card.trumpNumber().getScore())
-                .sum();
-        String content;
-        content = String.format(" - 결과: %d", resultCardScore);
-        if (resultCardScore > 21) {
-            content = " - 결과: 사망";
-        }
-        result.append(content);
-        System.out.println(result);
+        getGameResult(gamer.cardDeck(), result);
     }
 
     public void gamerMoreCardComment(Gamer gamer) {
@@ -101,22 +88,29 @@ public class ConsoleOut {
         }
     }
 
-    /*
-    딜러 카드: 3다이아몬드, 9클로버, 8다이아몬드 - 결과: 20
-        pobi카드: 2하트, 8스페이드, A클로버 - 결과: 21
-        jason카드: 7클로버, K스페이드 - 결과: 17
-    * */
+    public void blackJack() {
+        System.out.println("블랙잭 !");
+    }
 
+    private void getGameResult(CardDeck gamer, StringBuilder result) {
+        int resultCardScore = gamer.totalScore();
+        String content;
+        content = String.format(" - 결과: %d", resultCardScore);
+        if (resultCardScore > 21) {
+            content = " - 결과: 사망";
+        }
+        result.append(content);
+        System.out.println(result);
+    }
 
     private void cardFormatting(Queue<Card> cardQueue, StringBuilder result) {
         while (cardQueue.size() > 1) {
             Card card = cardQueue.poll();
-            result.append(String.format("%s", card.trumpNumber().getName()));
+            result.append(String.format("%s", card.trumpName()));
             result.append(String.format("%s, ", card.suit().getSuit()));
         }
-
         Card card = cardQueue.poll();
-        result.append(String.format("%s", card.trumpNumber().getName()));
+        result.append(String.format("%s", card.trumpName()));
         result.append(card.suit().getSuit());
     }
 

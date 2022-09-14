@@ -36,9 +36,9 @@ public class GamerTest {
                 Card.of(Suit.SPADES, TrumpNumber.KING)
         )), "name");
 
-        gamer.drawCard(Card.of(Suit.CLOVER, TrumpNumber.ACE));
+        gamer.give(Card.of(Suit.CLOVER, TrumpNumber.ACE));
 
-        assertEquals(gamer.getCards().size(), 3);
+        assertEquals(gamer.cardDeck().cardDeck().size(), 3);
     }
 
     @Test
@@ -62,4 +62,19 @@ public class GamerTest {
         assertEquals(gamer.getMoney(), 10_000);
     }
 
+    @Test
+    void 시작_시_블랙잭이면_배팅금액의_150퍼센트의_수익률을_가진다() {
+        Gamer gamer = Gamer.of(CardDeck.from(List.of(
+                Card.of(Suit.SPADES, TrumpNumber.ACE),
+                Card.of(Suit.SPADES, TrumpNumber.KING)
+        )), "name");
+
+        gamer.bettingMoney(10_000);
+
+        gamer.atStartBlackJack();
+
+        assertEquals(gamer.getMoney(), 15_000);
+
+
+    }
 }

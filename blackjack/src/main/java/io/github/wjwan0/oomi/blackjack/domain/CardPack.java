@@ -7,7 +7,7 @@ import java.util.*;
 
 public class CardPack {
 
-    private static CardPack deck = null;
+    private static CardPack pack = null;
     private final ArrayDeque<Card> cardDeck;
 
     private CardPack(ArrayDeque<Card> cardDeck) {
@@ -15,10 +15,10 @@ public class CardPack {
     }
 
     public static CardPack from() {
-        if (deck == null) {
-            deck = new CardPack(new ArrayDeque<>(makeCardDeck()));
+        if (pack == null) {
+            pack = new CardPack(new ArrayDeque<>(makeCardDeck()));
         }
-        return deck;
+        return pack;
     }
 
     private static List<Card> makeCardDeck() {

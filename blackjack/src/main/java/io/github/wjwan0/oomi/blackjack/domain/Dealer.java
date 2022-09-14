@@ -20,18 +20,22 @@ public class Dealer {
         this.cardPack = cardPack;
     }
 
-    public static Dealer from(CardDeck cardDeck, CardPack cardPack) {
+    public static Dealer of(CardDeck cardDeck, CardPack cardPack) {
         return new Dealer(cardDeck, cardPack);
     }
 
     public void drawCard(Gamer gamer) {
-        gamer.drawCard(cardPack.drawCard());
+        gamer.give(cardPack.drawCard());
     }
 
     public void drawCard() {
         if (cardDeck.totalScore() <= 16) {
             cardDeck.addCard(cardPack.drawCard());
         }
+    }
+
+    public Card drawGamerCard() {
+        return cardPack.drawCard();
     }
 
     public int totalScore() {
@@ -42,7 +46,4 @@ public class Dealer {
         return cardDeck;
     }
 
-    public CardPack getCardPack() {
-        return cardPack;
-    }
 }

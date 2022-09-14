@@ -18,7 +18,7 @@ public class Gamer {
 
     private static void validation(String gamerName) {
         if (gamerName == null || gamerName.isBlank()) {
-            throw new IllegalArgumentException("이름은 비어있 을 수 없습니다.");
+            throw new IllegalArgumentException("이름은 비어 있을 수 없습니다.");
         }
     }
 
@@ -26,7 +26,7 @@ public class Gamer {
         return this.gamerName;
     }
 
-    public void drawCard(Card card) {
+    public void give(Card card) {
         cardDeck.addCard(card);
     }
 
@@ -34,7 +34,7 @@ public class Gamer {
         return cardDeck.totalScore();
     }
 
-    public CardDeck getCards() {
+    public CardDeck cardDeck() {
         return cardDeck;
     }
 
@@ -50,8 +50,9 @@ public class Gamer {
         return money;
     }
 
-    public boolean drawCard(String answer) {
-        return answer.equals("y");
-    }
+    public void atStartBlackJack() {
+        if(cardDeck.totalScore()==21){
+            money = (int) (money * 1.5);
+        }    }
 }
 
